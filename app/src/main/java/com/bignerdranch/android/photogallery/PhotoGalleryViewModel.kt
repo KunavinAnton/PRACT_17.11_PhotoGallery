@@ -8,6 +8,6 @@ import com.bignerdranch.android.photogallery.data.GalleryItem
 class PhotoGalleryViewModel : ViewModel(){
     val galleryItemLiveData: LiveData<List<GalleryItem>>
     init {
-        galleryItemLiveData = FlickrFetchr().fetchPhotos()
+        galleryItemLiveData = FlickrFetchr().searchPhotos("planets")
     }
 }
