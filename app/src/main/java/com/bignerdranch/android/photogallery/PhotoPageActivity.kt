@@ -13,15 +13,14 @@ class PhotoPageActivity : AppCompatActivity() {
         val fm = supportFragmentManager
         val currentFragment = fm.findFragmentById(R.id.fragment_container)
         if (currentFragment == null) {
-            val fragment = PhotoPageFragment.newInstance(intent.data!!)
-            fm.beginTransaction().add(R.id.fragment_container, fragment).commit()
+            val fragment = intent.data?.let { PhotoPageFragment.newInstance(it) }
+            fragment?.let { fm.beginTransaction().add(R.id.fragment_container, it).commit() }
         }
     }
 
     companion object {
         fun newIntent(context: Context, photoPageUri: Uri): Intent {
-            return Intent(context,
-                PhotoPageActivity::class.java).apply {
+            return Intent(context, PhotoPageActivity::class.java).apply {
                 data = photoPageUri
             }
         }
